@@ -1,0 +1,50 @@
+<!-- CSS only -->
+
+{%extends 'base.html'%} {%block content%}
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<a href="{%url 'create'%}" class="btn btn-primary mt-3"
+					>Create a blog post</a
+				>
+
+				<table class="table mt-3">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Title</th>
+							<th scope="col">Category</th>
+							<th scope="col">Published Date</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for p in data%}
+						<tr>
+							<th scope="row">{{p.id}}</th>
+							<td>{{p.title}}</td>
+							<td>{{p.category.name}}</td>
+							<td>{{p.published_date}}</td>
+							<td>
+								<a href="#" class="btn btn-info btn-sm">View</a>
+								<a href="#" class="btn btn-warning btn-sm">Update</a>
+								<form action="#" method="post" class="d-inline">
+									{% csrf_token %}
+									<input
+										type="submit"
+										class="btn btn-danger btn-sm"
+										value="Delete"
+									/>
+								</form>
+							</td>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+{%endblock%}

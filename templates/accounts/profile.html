@@ -1,0 +1,23 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+    <h4>@ {{ profile.user }} </h4>
+    <p>Bio : {{ profile.bio }}</p>
+    {% if profile.contact %}
+        <p> Contact : {{ profile.contact }}</p>
+    {% endif %}
+    {% if profile.address %}
+        <p> address: {{ profile.address }}</p>
+    {% endif %} 
+
+<hr>
+    <form action="{% url 'editprofile' profile.user.id %}" method="POST">
+        {% csrf_token %}
+
+        {{ profileforms.as_p }}
+        <button> Edit profile </button>
+    </form>
+    
+
+
+{% endblock %}

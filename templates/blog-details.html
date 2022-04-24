@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %} 
+
+{% block content %}
+<main>
+	{% if request.user == blog.user %}
+		<div class="container">
+			<h3>{{blog.title}}</h3>
+			<p>{{blog.content}}</p>
+			{{ blog.slug }}
+			<p>by = {{blog.user}}</p>
+			<button class=" btn btn-danger"> <a href="{% url 'delete' blog.slug  %}">Delete</a> </button> <a href="{% url 'blogs' %}"><button class="btn btn-secondary">Back to home</button></a>  <button class = " btn btn-success"> <a href="{% url 'update' blog.slug %}"> Edit</a> </button>
+		</div>
+		
+	{% else %}
+		<div class="container">
+			<h3>{{blog.title}}</h3>
+			<p>{{blog.content}}</p>
+			<p>by  @{{blog.user}}</p>
+			<a href="{% url 'blogs' %}"><button class="btn btn-secondary">Back to home</button></a>
+		</div>
+	{% endif %}
+</main>
+{% endblock %}
